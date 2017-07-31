@@ -24,7 +24,8 @@ import scipy.io as sio
 import caffe, os, sys, cv2
 import argparse
 
-CLASSES = ('__background__', 'person')
+#CLASSES = ('__background__', 'person')
+CLASSES = ('__background__', 'vitamin')
 
 #CLASSES = ('__background__',
 #           'aeroplane', 'bicycle', 'bird', 'boat',
@@ -75,7 +76,8 @@ def demo(net, image_name):
     """Detect object classes in an image using pre-computed object proposals."""
 
     # Load the demo image
-    im_file = os.path.join(cfg.DATA_DIR, 'demo', image_name)
+    #im_file = os.path.join(cfg.DATA_DIR, 'demo', image_name)
+    im_file = os.path.join(cfg.DATA_DIR, image_name)
     im = cv2.imread(im_file)
 
     # Detect all object classes and regress object bounds
@@ -128,7 +130,9 @@ if __name__ == '__main__':
 #                              NETS[args.demo_net][1])
 
     #caffemodel = os.path.join('output/faster_rcnn_end2end/voc_2007_trainval/', 'zf_faster_rcnn_iter_10000.caffemodel')
-    caffemodel = os.path.join('output/faster_rcnn_end2end/inria_train/', 'vgg_cnn_m_1024_faster_rcnn_iter_6000.caffemodel')
+    #caffemodel = os.path.join('output/faster_rcnn_end2end/inria_train/', 'vgg_cnn_m_1024_faster_rcnn_iter_10000.caffemodel')
+    
+    caffemodel = os.path.join('output/faster_rcnn_end2end/semgrasp_train/', 'vgg_cnn_m_1024_faster_rcnn_iter_10000.caffemodel')
     
     if not os.path.isfile(caffemodel):
         raise IOError(('{:s} not found.\nDid you run ./data/script/'
@@ -149,11 +153,17 @@ if __name__ == '__main__':
     for i in xrange(2):
         _, _= im_detect(net, im)
 
-    im_names = ['000456.jpg', '000542.jpg', '001150.jpg',
-                '001763.jpg', '004545.jpg']
+    #im_names = ['demo/000456.jpg', 'demo/000542.jpg', 'demo/001150.jpg',
+    #            'demo/001763.jpg', 'demo/004545.jpg']
+    
+    im_names = ['semgrasp/data/Images/vitamin_1501527382.47.jpg',
+        'semgrasp/data/Images/vitamin_1501527447.66.jpg',
+        'semgrasp/data/Images/vitamin_1501527401.81.jpg', 
+        'semgrasp/data/Images/vitamin_1501527423.33.jpg']
+
     for im_name in im_names:
         print '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-        print 'Demo for data/demo/{}'.format(im_name)
+        print 'Demo for data/{}'.format(im_name)
         demo(net, im_name)
 
     plt.show()

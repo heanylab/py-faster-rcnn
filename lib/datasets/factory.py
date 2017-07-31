@@ -12,6 +12,7 @@ __sets = {}
 from datasets.pascal_voc import pascal_voc
 from datasets.coco import coco
 from datasets.inria import inria
+from datasets.semgrasp import semgrasp
 import numpy as np
 
 # Set up voc_<year>_<split> using selective search "fast" mode
@@ -36,6 +37,11 @@ for year in ['2015']:
 for split in ['train', 'test']:
     name = 'inria_{}'.format(split)
     __sets[name] = (lambda split=split: inria(split))
+
+# Set up semgrasp_<split>
+for split in ['train', 'test']:
+    name = 'semgrasp_{}'.format(split)
+    __sets[name] = (lambda split=split: semgrasp(split))
 
 def get_imdb(name):
     """Get an imdb (image database) by name."""

@@ -44,6 +44,13 @@ case $DATASET in
     PT_DIR="inria"
     ITERS=40000
     ;;
+  semgrasp)
+    TRAIN_IMDB="semgrasp_train"
+    TEST_IMDB="semgrasp_test"
+    #PT_DIR="semgrasp"
+    PT_DIR="inria"
+    ITERS=20000
+    ;;
   *)
     echo "No dataset given"
     exit
