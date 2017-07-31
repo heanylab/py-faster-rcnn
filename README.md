@@ -215,3 +215,8 @@ Test outputs are saved under:
 ```
 output/<experiment directory>/<dataset name>/<network snapshot name>/
 ```
+
+
+### Train on new dataset
+
+refer https://github.com/zeyuanxy/fast-rcnn/tree/master/help/train
