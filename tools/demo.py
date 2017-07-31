@@ -24,12 +24,14 @@ import scipy.io as sio
 import caffe, os, sys, cv2
 import argparse
 
-CLASSES = ('__background__',
-           'aeroplane', 'bicycle', 'bird', 'boat',
-           'bottle', 'bus', 'car', 'cat', 'chair',
-           'cow', 'diningtable', 'dog', 'horse',
-           'motorbike', 'person', 'pottedplant',
-           'sheep', 'sofa', 'train', 'tvmonitor')
+CLASSES = ('__background__', 'person')
+
+#CLASSES = ('__background__',
+#           'aeroplane', 'bicycle', 'bird', 'boat',
+#           'bottle', 'bus', 'car', 'cat', 'chair',
+#           'cow', 'diningtable', 'dog', 'horse',
+#           'motorbike', 'person', 'pottedplant',
+#           'sheep', 'sofa', 'train', 'tvmonitor')
 
 NETS = {'vgg16': ('VGG16',
                   'VGG16_faster_rcnn_final.caffemodel'),
@@ -117,11 +119,17 @@ if __name__ == '__main__':
 
     args = parse_args()
 
-    prototxt = os.path.join(cfg.MODELS_DIR, NETS[args.demo_net][0],
-                            'faster_rcnn_alt_opt', 'faster_rcnn_test.pt')
-    caffemodel = os.path.join(cfg.DATA_DIR, 'faster_rcnn_models',
-                              NETS[args.demo_net][1])
+#    prototxt = os.path.join(cfg.MODELS_DIR, NETS[args.demo_net][0],
+#                            'faster_rcnn_alt_opt', 'faster_rcnn_test.pt')
 
+    #prototxt = os.path.join('models/pascal_voc', 'ZF', 'faster_rcnn_end2end', 'test.prototxt')
+    prototxt = os.path.join('models/inria', 'VGG_CNN_M_1024', 'faster_rcnn_end2end', 'test.prototxt')
+#    caffemodel = os.path.join(cfg.DATA_DIR, 'faster_rcnn_models',
+#                              NETS[args.demo_net][1])
+
+    #caffemodel = os.path.join('output/faster_rcnn_end2end/voc_2007_trainval/', 'zf_faster_rcnn_iter_10000.caffemodel')
+    caffemodel = os.path.join('output/faster_rcnn_end2end/inria_train/', 'vgg_cnn_m_1024_faster_rcnn_iter_6000.caffemodel')
+    
     if not os.path.isfile(caffemodel):
         raise IOError(('{:s} not found.\nDid you run ./data/script/'
                        'fetch_faster_rcnn_models.sh?').format(caffemodel))
