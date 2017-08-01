@@ -25,8 +25,20 @@ import caffe, os, sys, cv2
 import argparse
 
 #CLASSES = ('__background__', 'person')
-CLASSES = ('__background__', 'vitamin')
-
+#CLASSES = ('__background__', 'vitamin')
+#CLASSES = ('__background__', 'shower_soap', 'vitamin')
+CLASSES = ('__background__', 'popcorn_box', 'shower_soap', 'vitamin')
+CLASSES = ('__background__', 
+    'banana', 
+    'blocks', 
+    'brush',
+    'popcorn_box', 
+    'ps_joystick', 
+    'sb_mug', 
+    'shoe',
+    'shower_soap', 
+    'vitamin', 
+    'ziplock_box')
 #CLASSES = ('__background__',
 #           'aeroplane', 'bicycle', 'bird', 'boat',
 #           'bottle', 'bus', 'car', 'cat', 'chair',
@@ -125,14 +137,15 @@ if __name__ == '__main__':
 #                            'faster_rcnn_alt_opt', 'faster_rcnn_test.pt')
 
     #prototxt = os.path.join('models/pascal_voc', 'ZF', 'faster_rcnn_end2end', 'test.prototxt')
-    prototxt = os.path.join('models/inria', 'VGG_CNN_M_1024', 'faster_rcnn_end2end', 'test.prototxt')
+    #prototxt = os.path.join('models/inria', 'VGG_CNN_M_1024', 'faster_rcnn_end2end', 'test.prototxt')
+    prototxt = os.path.join('models/semgrasp', 'VGG_CNN_M_1024', 'faster_rcnn_end2end', 'test.prototxt')
 #    caffemodel = os.path.join(cfg.DATA_DIR, 'faster_rcnn_models',
 #                              NETS[args.demo_net][1])
 
     #caffemodel = os.path.join('output/faster_rcnn_end2end/voc_2007_trainval/', 'zf_faster_rcnn_iter_10000.caffemodel')
     #caffemodel = os.path.join('output/faster_rcnn_end2end/inria_train/', 'vgg_cnn_m_1024_faster_rcnn_iter_10000.caffemodel')
     
-    caffemodel = os.path.join('output/faster_rcnn_end2end/semgrasp_train/', 'vgg_cnn_m_1024_faster_rcnn_iter_10000.caffemodel')
+    caffemodel = os.path.join('output/faster_rcnn_end2end/semgrasp_train/', 'vgg_cnn_m_1024_faster_rcnn_iter_50000.caffemodel')
     
     if not os.path.isfile(caffemodel):
         raise IOError(('{:s} not found.\nDid you run ./data/script/'
@@ -156,10 +169,34 @@ if __name__ == '__main__':
     #im_names = ['demo/000456.jpg', 'demo/000542.jpg', 'demo/001150.jpg',
     #            'demo/001763.jpg', 'demo/004545.jpg']
     
-    im_names = ['semgrasp/data/Images/vitamin_1501527382.47.jpg',
-        'semgrasp/data/Images/vitamin_1501527447.66.jpg',
-        'semgrasp/data/Images/vitamin_1501527401.81.jpg', 
-        'semgrasp/data/Images/vitamin_1501527423.33.jpg']
+    #im_names = ['semgrasp/data/Images/vitamin_1501527382.47.jpg',
+    #    'semgrasp/data/Images/vitamin_1501527447.66.jpg',
+    #    'semgrasp/data/Images/vitamin_1501527401.81.jpg', 
+    #    'semgrasp/data/Images/vitamin_1501527423.33.jpg',
+    #    'semgrasp/data/Images/shower_soap_1501527124.82.jpg',
+    #    'semgrasp/data/Images/shower_soap_1501527183.7.jpg',
+    #    'semgrasp/data/Images/shower_soap_1501527230.98.jpg', 
+    #    ]
+
+    im_names = [
+        'semgrasp/test/test_1501616175.66.jpg',
+        'semgrasp/test/test_1501616259.01.jpg',
+        'semgrasp/test/test_1501616317.65.jpg',
+        'semgrasp/test/test_1501616347.15.jpg',
+        'semgrasp/test/test_1501616378.26.jpg',
+        'semgrasp/test/test_1501616244.83.jpg',
+        'semgrasp/test/test_1501616219.63.jpg',
+        'semgrasp/test/test_1501616337.7.jpg',
+        'semgrasp/test/test_1501616190.37.jpg',
+        'semgrasp/test/test_1501616186.31.jpg',
+        'semgrasp/test/test_1501616328.78.jpg',
+        'semgrasp/test/test_1501616394.68.jpg',
+        'semgrasp/test/test_1501616299.39.jpg',
+        'semgrasp/test/test_1501616364.41.jpg',
+        'semgrasp/test/test_1501616206.15.jpg',
+        'semgrasp/test/test_1501616416.7.jpg',
+        'semgrasp/test/test_1501616289.37.jpg',
+    ]
 
     for im_name in im_names:
         print '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'

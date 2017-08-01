@@ -47,9 +47,8 @@ case $DATASET in
   semgrasp)
     TRAIN_IMDB="semgrasp_train"
     TEST_IMDB="semgrasp_test"
-    #PT_DIR="semgrasp"
-    PT_DIR="inria"
-    ITERS=20000
+    PT_DIR="semgrasp"
+    ITERS=50000
     ;;
   *)
     echo "No dataset given"
